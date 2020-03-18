@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# our view is down on the tree
+from .todo_wrapper import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('todo_userview/',views.index),
+    path('api/v1/todo/',views.todo_get),
 ]
