@@ -9,4 +9,4 @@ def index(request):
 
 
 def todo_get(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("hidden request.")
