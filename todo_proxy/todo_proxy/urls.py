@@ -26,5 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
  	path('accounts/', include('django.contrib.auth.urls')),
     path('',views.index, name='homepage'),
-    path('api/v1/todo/',views.todo_get),
+    path('api/v1/todo/',views.api_v1_todo),
 ]

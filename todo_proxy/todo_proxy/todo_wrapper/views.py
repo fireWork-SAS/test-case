@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from django.http import JsonResponse
+
 from urllib.request import Request, urlopen
 
 from django.contrib.auth import authenticate, login, logout
@@ -26,7 +28,7 @@ def get_proxy_data(user_name):
 			res_array = rr.json()
 			data={'name':user_name, 'todos':res_array}
 		else:
-			data={'name':user_name, 'todos':'nope'}
+			data={'name':user_name, 'todos':[]}
 	else:
 		data = {'name':'nobody'}
 	return data
@@ -48,9 +50,30 @@ def index(request):
 	return render(request, 'base.html', context)
 
 
-def todo_get(request):
+def api_v1_todo(request):
 
-    return HttpResponse("hidden request.")
+	if request.user.is_authenticated:
+	# Do something for authenticated users.
+		todo_data = get_proxy_data(request.user.username)
+		which_one = request.user.id
+		result_data = []
+		if (todo_data is not None):
+			data_to_filter = todo_data['todos']
+			for item in data_to_filter:
+				if (which_one %2 ==0):   # is even user
+					if (item.get('id')%2==0):
+						result_data.append(item)
+					else:
+						pass
+				else: #odd user 
+					if (item.get('id')%2==0):
+						pass						
+					else:
+						result_data.append(item)
+						
+	else:
+		result_data = json.dumps({})
+	return JsonResponse(result_data,safe=False)
 
 
 def login_request(request):
