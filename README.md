@@ -13,4 +13,11 @@ work for:
 Реализация front-end'а не обязательна
 Back-end: Python Django, Flask, etc.
 
-Результат работы выложите в публичный репозиторий на ресурсе https://github.com и скиньте ссылку мне.
+Результат работы выложите в публичный репозиторий на ресурсе https://github.com и скиньте ссылку мне
+
+
+нечетный юзер - alex/alex
+четный - firework/fireworkfirework
+
+ставится в virtualenv через requirements.txt
+
