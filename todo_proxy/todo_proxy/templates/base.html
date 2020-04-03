@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+	<div>
+		{% if user.is_authenticated %}
+  			Hi {{ user.username }}!
+  			<p><a href="{% url 'logout' %}">logout</a></p>
+			{% else %}
+  				<p>You are not logged in</p>
+  				<a href="{% url 'login' %}">login</a>
+		{% endif %}
+	</div>
+    <!--img src="{% static "images/sitelogo.png" %}" alt="Logo"-->
+    {% block content %}
+    <p> {{data.name}}</p>
+    {% for todo in data.todos %}
+    	<div>
+    		<p>
+    			<span>{{ todo.userId}}</span>
+    		
+    			{{ todo.title}}
+    		</p>
+
+    	</div>
+    {%endfor%}
+
+    <div style="display:none;"> {{ data.todos  }}</div>
+    {% endblock %}
+</body>
+</html>

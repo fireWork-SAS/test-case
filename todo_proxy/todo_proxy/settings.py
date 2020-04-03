@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     
     'todo_proxy.todo_wrapper',
+    
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'todo_proxy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'todo_proxy/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +125,7 @@ STATIC_URL = '/static/'
 
 
 EXTERNAL_API_BASE='https://jsonplaceholder.typicode.com/'
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
